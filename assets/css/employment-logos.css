@@ -1,0 +1,116 @@
+/*
+  JeremyBernsdorff.com — Employment Logo Sprite
+
+  Expected sprite file:
+    assets/images/employment_logos_sprite.png
+
+  DEFAULT MAP ASSUMPTION
+  ----------------------
+  The CSS below assumes an 8-logo sprite arranged as a 4-column × 2-row grid:
+
+    ROW 1:
+      TrueBlue | DISYS | Boeing | Dell EMC
+
+    ROW 2:
+      TEKsystems | American Family | Autoliv | P&G
+
+  The source logos were previously normalized to 1200 × 600 transparent canvases.
+  If your actual sprite sheet uses a different arrangement, ONLY the eight
+  background-position declarations at the bottom of this file need to change.
+
+  The visual logo boxes are intentionally smaller than the full source cells;
+  background-size scales the sprite automatically.
+*/
+
+.company-logo {
+  display: block;
+  width: min(180px, 100%);
+  aspect-ratio: 2 / 1;
+  margin-inline: auto;
+
+  background-image: url("../images/employment_logos_sprite.png");
+  background-repeat: no-repeat;
+
+  /* 4 columns × 2 rows */
+  background-size: 400% 200%;
+
+  /* Keep logos crisp and unwarped */
+  flex: 0 0 auto;
+}
+
+.logo-stack {
+  width: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+.logo-stack .company-logo {
+  width: min(170px, 100%);
+}
+
+.logo-relationship-arrow {
+  color: #8b98a9;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+/*
+  SPRITE POSITIONS
+  CSS background-position uses 0%, 33.333%, 66.667%, 100%
+  across a four-column sprite and 0% / 100% across two rows.
+*/
+
+/* Row 1 */
+.logo-trueblue { background-position: 0% 0%; }
+.logo-disys    { background-position: 33.333% 0%; }
+.logo-boeing   { background-position: 66.667% 0%; }
+.logo-dellemc  { background-position: 100% 0%; }
+
+/* Row 2 */
+.logo-teksystems { background-position: 0% 100%; }
+.logo-amfam      { background-position: 33.333% 100%; }
+.logo-autoliv    { background-position: 66.667% 100%; }
+.logo-pg         { background-position: 100% 100%; }
+
+/* Experience-card integration */
+.logo-box {
+  overflow: hidden;
+}
+
+.logo-box.logo-box-sprite {
+  min-width: 0;
+  padding: 24px 18px;
+}
+
+/* Accessible text fallback if the sprite image is unavailable */
+.company-logo::after {
+  content: attr(data-company);
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .logo-box.logo-box-sprite {
+    min-height: 145px;
+  }
+
+  .company-logo {
+    width: min(210px, 72vw);
+  }
+
+  .logo-stack {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .logo-stack .company-logo {
+    width: min(140px, 34vw);
+  }
+
+  .logo-relationship-arrow {
+    transform: rotate(-90deg);
+  }
+}

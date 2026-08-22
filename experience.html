@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Professional Experience | Jeremy Bernsdorff</title>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/employment-logos.css">
+
+<style>
+.experience-points{
+  margin:20px 0 0;
+  padding-left:20px;
+  color:#475467;
+}
+.experience-points li{margin:8px 0}
+.technical-development{
+  margin-top:64px;
+  padding-top:58px;
+  border-top:1px solid var(--line);
+}
+.technical-development-head{max-width:860px;margin-bottom:30px}
+.technical-development-head>p:last-child{color:var(--muted)}
+.technical-development-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.technical-development-grid>div{
+  border:1px solid var(--line);
+  padding:22px;
+  background:#fff;
+}
+.technical-development-grid h3{font-size:18px;margin-bottom:8px}
+.technical-development-grid p{margin:0;color:var(--muted)}
+.experience-education{
+  margin-top:54px;
+  padding-top:48px;
+  border-top:1px solid var(--line);
+  max-width:880px;
+}
+.experience-education h2{font-size:clamp(28px,3.3vw,42px)}
+.experience-education p:last-child{font-size:17px;color:#475467}
+@media(max-width:760px){
+  .technical-development-grid{grid-template-columns:1fr}
+}
+
+
+
+
+/* Consistent experience-card structure */
+.experience-carousel{
+  align-items:stretch;
+}
+.experience-card{
+  align-self:stretch;
+}
+.exp-copy{
+  display:flex;
+  flex-direction:column;
+}
+.exp-head{
+  align-items:flex-start;
+}
+.exp-head > div:first-child{
+  min-width:0;
+}
+.exp-head > strong{
+  min-width:92px;
+  text-align:right;
+  white-space:nowrap;
+  line-height:1.3;
+}
+
+.employment-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 20px;
+  margin-top:9px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.45;
+}
+.employment-meta > span{
+  display:flex;
+  gap:6px;
+  align-items:baseline;
+}
+.meta-label{
+  color:var(--blue);
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+.exp-copy > p{
+  margin-top:20px;
+  margin-bottom:0;
+}
+.experience-points{
+  margin-top:18px;
+}
+.experience-points strong,
+.exp-copy > p strong{
+  font-weight:inherit;
+}
+
+@media(max-width:720px){
+  .exp-head{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .exp-head > strong{
+    min-width:0;
+    text-align:left;
+  }
+  .employment-meta{
+    display:grid;
+    gap:5px;
+  }
+}
+
+/* Circular experience carousel controls remain active at both ends. */
+[data-experience-carousel] .carousel-btn:disabled{
+  opacity:1;
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">JB</span>
+    <span class="brand-copy"><strong>Jeremy Bernsdorff</strong><small>Technical Portfolio</small></span>
+  </a>
+  <button class="menu-btn" aria-expanded="false">Menu</button>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="experience.html">Experience</a>
+    <a href="vmware.html">VMware Lab</a>
+    <a href="microsoft365.html">Microsoft 365</a>
+    <a href="software.html">Software</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">PROFESSIONAL EXPERIENCE</p>
+    <h1>Enterprise environments and hands-on technical work.</h1>
+    <p>
+      More than 10 years supporting enterprise users, distributed sites, specialized R&amp;D environments,
+      endpoints, hardware, applications, and network connectivity—combined with current manufacturing
+      operations experience and ongoing Microsoft 365 administration development.
+    </p>
+  </div>
+
+  <div class="carousel-shell" data-experience-carousel tabindex="0" aria-label="Professional experience carousel">
+    <div class="carousel-controls">
+      <div class="carousel-buttons">
+        <button class="carousel-btn" type="button" data-experience-prev>‹ Previous</button>
+        <button class="carousel-btn" type="button" data-experience-next>Next ›</button>
+      </div>
+      <span class="carousel-status" data-experience-status></span>
+    </div>
+
+    <div class="experience-carousel" data-experience-track>
+
+      <article class="experience-card">
+        <div class="logo-box logo-box-sprite">
+          <span class="company-logo logo-trueblue" role="img" aria-label="TrueBlue logo" data-company="TrueBlue"></span>
+        </div>
+        <div class="exp-copy">
+          <div class="exp-head">
+            <div>
+              <h3>IT Service Desk Technician</h3>
+              <div class="employment-meta">
+                <span><span class="meta-label">Employer</span>TrueBlue, Inc.</span>
+                <span><span class="meta-label">Location</span>Tacoma, WA</span>
+              </div>
+            </div>
+            <strong>2008–2012</strong>
+          </div>
+          <p>
+            Provided remote desktop, application, and technical support to satellite branches across
+            TrueBlue’s family of temporary-labor brands. Troubleshot workstation, peripheral, connectivity,
+            and business-application issues affecting branch CDM/ATM systems, branch infrastructure, and
+            associate workstations.
+          </p>
+          <ul class="experience-points">
+            <li>Managed incidents, tasks, service requests, escalations, and hardware assets using LabPro2000 and later iET.</li>
+            <li>Worked within service-level expectations while supporting distributed branch users remotely.</li>
+            <li>Identified an HTML scripting defect that misrouted users away from an internal SharePoint support page; more than 30 branches had been affected.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="logo-box logo-box-sprite">
+          <div class="logo-stack" aria-label="DISYS contract assignment supporting Boeing">
+            <span class="company-logo logo-disys" role="img" aria-label="DISYS logo" data-company="DISYS"></span>
+            <span class="logo-relationship-arrow" aria-hidden="true">↓</span>
+            <span class="company-logo logo-boeing" role="img" aria-label="Boeing logo" data-company="Boeing"></span>
+          </div>
+        </div>
+        <div class="exp-copy">
+          <div class="exp-head">
+            <div>
+              <h3>Computer Technician (Contract)</h3>
+              <div class="employment-meta">
+                <span><span class="meta-label">Contracting Agency</span>Digital Intelligence Systems (DISYS)</span>
+                <span><span class="meta-label">Client Assignment</span>Boeing</span>
+                <span><span class="meta-label">Location</span>Seattle, WA</span>
+              </div>
+            </div>
+            <strong>2013–2017</strong>
+          </div>
+          <p>
+            Provided advanced technical support in specialized research and development environments
+            supporting complex engineering workflows. Imaged, staged, configured, deployed, and maintained
+            specialty computing equipment used in demanding and extreme operating environments.
+          </p>
+          <ul class="experience-points">
+            <li>Supported endpoint lifecycle work, standardized system builds, asset control, software troubleshooting, and escalation support.</li>
+            <li>Served as backup to the onsite lead in addition to normally assigned duties.</li>
+            <li>Imaged and staged more than 70 systems in 3.5 days while preserving configuration accuracy.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="logo-box logo-box-sprite">
+          <div class="logo-stack" aria-label="Dell EMC contract assignment supporting Boeing">
+            <span class="company-logo logo-dellemc" role="img" aria-label="Dell EMC logo" data-company="Dell EMC"></span>
+            <span class="logo-relationship-arrow" aria-hidden="true">↓</span>
+            <span class="company-logo logo-boeing" role="img" aria-label="Boeing logo" data-company="Boeing"></span>
+          </div>
+        </div>
+        <div class="exp-copy">
+          <div class="exp-head">
+            <div>
+              <h3>Technical Support Analyst (Contract)</h3>
+              <div class="employment-meta">
+                <span><span class="meta-label">Contracting Agency</span>Dell EMC</span>
+                <span><span class="meta-label">Client Assignment</span>Boeing</span>
+                <span><span class="meta-label">Location</span>Seattle, WA</span>
+              </div>
+            </div>
+            <strong>2017–2019</strong>
+          </div>
+          <p>
+            Provided advanced Tier 2 technical and application support to more than
+            400 global research and development laboratories for a major commercial
+            transportation organization.
+          </p>
+          <ul class="experience-points">
+            <li>Built, imaged, deployed, maintained, and troubleshot standard and high-performance computing systems used by engineering and laboratory teams.</li>
+            <li>Diagnosed hardware, software, application, data-collection, cabling, peripheral, integration, and network-connectivity issues involving scientific instruments and collector PCs.</li>
+            <li>Supported license-server administration and specialized engineering applications.</li>
+            <li>Resolved a high-visibility connectivity issue involving a high-speed imaging camera and its data-collection system.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="logo-box logo-box-sprite">
+          <div class="logo-stack" aria-label="TEKsystems contract assignment supporting American Family Insurance">
+            <span class="company-logo logo-teksystems" role="img" aria-label="TEKsystems logo" data-company="TEKsystems"></span>
+            <span class="logo-relationship-arrow" aria-hidden="true">↓</span>
+            <span class="company-logo logo-amfam" role="img" aria-label="American Family logo" data-company="American Family"></span>
+          </div>
+        </div>
+        <div class="exp-copy">
+          <div class="exp-head">
+            <div>
+              <h3>IT Field Technician (Contract)</h3>
+              <div class="employment-meta">
+                <span><span class="meta-label">Contracting Agency</span>TEKsystems</span>
+                <span><span class="meta-label">Client Assignment</span>American Family Insurance</span>
+                <span><span class="meta-label">Location</span>Issaquah, WA</span>
+              </div>
+            </div>
+            <strong>2019–2020</strong>
+          </div>
+          <p>
+            Delivered Tier 2 field, desktop, and site support for a major mutual insurance organization
+            while managing incidents and assigned work in ServiceNow.
+          </p>
+          <ul class="experience-points">
+            <li>Installed, configured, tested, supported, and decommissioned complete agency technology environments including PCs, printers, telephony, switches, wireless access points, and peripherals.</li>
+            <li>Performed endpoint deployment, site and network installation, hardware replacement, software troubleshooting, and connectivity support across onsite and offsite locations.</li>
+            <li>Maintained technical documentation, hardware-asset records, and product-lifecycle replacement controls while coordinating with distributed IT teams.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="logo-box logo-box-sprite">
+          <span class="company-logo logo-autoliv" role="img" aria-label="Autoliv logo" data-company="Autoliv"></span>
+        </div>
+        <div class="exp-copy">
+          <div class="exp-head">
+            <div>
+              <h3>Material Associate</h3>
+              <div class="employment-meta">
+                <span><span class="meta-label">Employer</span>Autoliv</span>
+                <span><span class="meta-label">Location</span>Brigham City, UT</span>
+              </div>
+            </div>
+            <strong>2022–2026</strong>
+          </div>
+          <p>
+            Maintained accurate, time-sensitive material flow supporting continuous production in a
+            high-volume manufacturing environment.
+          </p>
+          <ul class="experience-points">
+            <li>Coordinated across production teams and adapted to changing priorities.</li>
+            <li>Followed standardized safety and operating procedures.</li>
+            <li>Supported reliable material movement, organized work areas, and consistent handoffs across shifts and production functions.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="logo-box logo-box-sprite">
+          <span class="company-logo logo-pg" role="img" aria-label="Procter &amp; Gamble logo" data-company="Procter &amp; Gamble"></span>
+        </div>
+        <div class="exp-copy">
+          <div class="exp-head">
+            <div>
+              <h3>Plant Technician</h3>
+              <div class="employment-meta">
+                <span><span class="meta-label">Employer</span>Procter &amp; Gamble</span>
+                <span><span class="meta-label">Location</span>Bear River City, UT</span>
+              </div>
+            </div>
+            <strong>2026–Present</strong>
+          </div>
+          <p>
+            Operate high-speed converting and packing equipment while maintaining safe, consistent
+            production output and product quality in a computer-controlled manufacturing environment.
+          </p>
+          <ul class="experience-points">
+            <li>Control and monitor production processes from computer terminals, make authorized adjustments, and respond to equipment or process conditions.</li>
+            <li>Perform preventive maintenance and first-line troubleshooting of equipment faults and product defects to reduce downtime and restore stable operation.</li>
+            <li>Maintain production records and data, follow SOPs, and coordinate during start-ups, line changes, troubleshooting events, and shift transitions.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="carousel-dots" data-experience-dots aria-label="Experience positions"></div>
+  </div>
+
+  <section class="technical-development">
+    <div class="technical-development-head">
+      <p class="eyebrow">TECHNICAL DEVELOPMENT</p>
+      <h2>Microsoft 365 Business Premium Administration Lab</h2>
+      <p>Independent hands-on lab · 2026–Present</p>
+    </div>
+    <div class="technical-development-grid">
+      <div>
+        <h3>Administration</h3>
+        <p>
+          Administer simulated business users and groups through the Microsoft 365 Admin Center and
+          Microsoft Entra ID using structured, ticket-based support scenarios.
+        </p>
+      </div>
+      <div>
+        <h3>Identity &amp; Access</h3>
+        <p>
+          Create and maintain user accounts, licenses, manager relationships, security groups,
+          Microsoft 365 groups, memberships, ownership, and access assignments.
+        </p>
+      </div>
+      <div>
+        <h3>Collaboration &amp; Permissions</h3>
+        <p>
+          Configure group-based SharePoint permissions and distinguish security groups used for access
+          control from Microsoft 365 groups used for collaboration resources.
+        </p>
+      </div>
+      <div>
+        <h3>Troubleshooting &amp; Documentation</h3>
+        <p>
+          Troubleshoot identity, access, group, and collaboration issues; document actions, technical
+          reasoning, validation steps, and final resolution.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cert-grid">
+    <section class="cert-panel current">
+      <span class="cert-label">Current Certifications</span>
+      <div class="cert-list">
+        <span class="cert-chip">CompTIA A+</span>
+        <span class="cert-chip">CompTIA Project+</span>
+      </div>
+    </section>
+    <section class="cert-panel previous">
+      <span class="cert-label">Previously Held</span>
+      <div class="cert-list">
+        <span class="cert-chip">CompTIA Network+</span>
+        <span class="cert-chip">CompTIA Security+</span>
+      </div>
+    </section>
+  </div>
+
+  <section class="experience-education">
+    <p class="eyebrow">EDUCATION</p>
+    <h2>Bachelor of Science in IT — Software Development</h2>
+    <p>
+      Western Governors University · Seattle, WA<br>
+      Coursework included software development, data management, object-oriented design, data structures,
+      mobile and client-server applications, and IT/networking/security foundations.
+    </p>
+  </section>
+</section><section class="cert-panel previous"><span class="cert-label">Previously Held</span><div class="cert-list"><span class="cert-chip">CompTIA Network+</span><span class="cert-chip">CompTIA Security+</span></div></section></div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>Jeremy Bernsdorff · Technical Portfolio</span>
+  <span>IT operations · administration labs · software development</span>
+</footer>
+<script src="assets/js/site.js"></script>
+
+<script>
+(() => {
+  const shell = document.querySelector('[data-experience-carousel]');
+  if (!shell) return;
+
+  const track = shell.querySelector('[data-experience-track]');
+  const slides = [...track.children];
+  const prev = shell.querySelector('[data-experience-prev]');
+  const next = shell.querySelector('[data-experience-next]');
+  const status = shell.querySelector('[data-experience-status]');
+  const dotsWrap = shell.querySelector('[data-experience-dots]');
+
+  if (!track || !slides.length) return;
+
+  const dots = slides.map((_, index) => {
+    const button = document.createElement('button');
+    button.className = 'carousel-dot';
+    button.type = 'button';
+    button.setAttribute('aria-label', `Go to experience ${index + 1}`);
+    button.addEventListener('click', () => goTo(index));
+    dotsWrap?.appendChild(button);
+    return button;
+  });
+
+  function currentIndex() {
+    const trackLeft = track.getBoundingClientRect().left;
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+
+    slides.forEach((slide, index) => {
+      const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    });
+
+    return bestIndex;
+  }
+
+  function update() {
+    const index = currentIndex();
+    if (status) status.textContent = `${index + 1} / ${slides.length}`;
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle('active', dotIndex === index);
+    });
+  }
+
+  function goTo(index, behavior = 'smooth') {
+    const normalized = (index + slides.length) % slides.length;
+    track.scrollTo({
+      left: slides[normalized].offsetLeft - track.offsetLeft,
+      behavior
+    });
+
+    // Update promptly for button navigation; scroll handler will refine.
+    window.setTimeout(update, behavior === 'smooth' ? 220 : 0);
+  }
+
+  function advance(delta) {
+    goTo(currentIndex() + delta);
+  }
+
+  prev?.addEventListener('click', () => advance(-1));
+  next?.addEventListener('click', () => advance(1));
+
+  shell.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      advance(-1);
+    }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      advance(1);
+    }
+  });
+
+  let raf = null;
+  track.addEventListener('scroll', () => {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(update);
+  }, { passive: true });
+
+  update();
+})();
+</script>
+
+
+</body>
+</html>
