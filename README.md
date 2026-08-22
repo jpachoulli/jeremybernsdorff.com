@@ -101,3 +101,4 @@ The PDF supports the portfolio statement that lab work is documented with:
 - validation steps
 - evidence gaps
 - operational lessons learned
+# jeremybernsdorff.com
