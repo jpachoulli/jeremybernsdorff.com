@@ -5,6 +5,110 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Microsoft 365 Administration | Jeremy Bernsdorff</title>
 <link rel="stylesheet" href="assets/css/site.css">
+
+<style>
+.gallery-frame .lightbox-trigger {
+  cursor: zoom-in;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(7, 15, 31, 0.92);
+}
+
+.image-lightbox.is-open {
+  display: flex;
+}
+
+.image-lightbox-content {
+  margin: 0;
+  max-width: min(94vw, 1500px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.image-lightbox-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.image-lightbox-content figcaption {
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.image-lightbox-close,
+.image-lightbox-nav {
+  position: absolute;
+  border: 0;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  cursor: pointer;
+}
+
+.image-lightbox-close {
+  top: 1rem;
+  right: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 2rem;
+  line-height: 1;
+  border-radius: 999px;
+}
+
+.image-lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 4rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+}
+
+.image-lightbox-prev {
+  left: 1rem;
+}
+
+.image-lightbox-next {
+  right: 1rem;
+}
+
+.image-lightbox-close:hover,
+.image-lightbox-nav:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+@media (max-width: 700px) {
+  .image-lightbox {
+    padding: 1rem;
+  }
+
+  .image-lightbox-nav {
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+  }
+
+  .image-lightbox-content img {
+    max-height: 78vh;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -53,27 +157,27 @@
 
   <div class="gallery-grid">
     <article class="gallery-item">
-      <div class="gallery-frame"><img src="assets/images/microsoft365/m365_admin_center_home.png" alt="Microsoft 365 Admin Center"></div>
+      <div class="gallery-frame"><img class="lightbox-trigger" src="assets/images/microsoft365/m365_admin_center_home.png" alt="Microsoft 365 Admin Center" data-full="assets/images/microsoft365/m365_admin_center_home.png"></div>
       <div class="gallery-copy"><strong>Microsoft 365 Admin Center</strong><span>Tenant administration and Microsoft 365 service management.</span></div>
     </article>
     <article class="gallery-item">
-      <div class="gallery-frame"><img src="assets/images/microsoft365/m365_entra_users_groups.png" alt="Microsoft Entra ID users and groups administration"></div>
+      <div class="gallery-frame"><img class="lightbox-trigger" src="assets/images/microsoft365/m365_entra_users_groups.png" alt="Microsoft Entra ID users and groups administration" data-full="assets/images/microsoft365/m365_entra_users_groups.png"></div>
       <div class="gallery-copy"><strong>Entra ID Users & Groups</strong><span>Identity, group membership, and access administration.</span></div>
     </article>
     <article class="gallery-item">
-      <div class="gallery-frame"><img src="assets/images/microsoft365/m365_hybrid_identity_sync.png" alt="Microsoft Entra hybrid identity synchronization"></div>
+      <div class="gallery-frame"><img class="lightbox-trigger" src="assets/images/microsoft365/m365_hybrid_identity_sync.png" alt="Microsoft Entra hybrid identity synchronization" data-full="assets/images/microsoft365/m365_hybrid_identity_sync.png"></div>
       <div class="gallery-copy"><strong>Hybrid Identity</strong><span>On-premises Active Directory synchronized with Microsoft Entra ID.</span></div>
     </article>
     <article class="gallery-item">
-      <div class="gallery-frame"><img src="assets/images/microsoft365/m365_intune_fleet.png" alt="Microsoft Intune managed Windows device fleet"></div>
+      <div class="gallery-frame"><img class="lightbox-trigger" src="assets/images/microsoft365/m365_intune_fleet.png" alt="Microsoft Intune managed Windows device fleet" data-full="assets/images/microsoft365/m365_intune_fleet.png"></div>
       <div class="gallery-copy"><strong>Intune Managed Fleet</strong><span>Centralized Windows endpoint enrollment, visibility, and administration.</span></div>
     </article>
     <article class="gallery-item">
-      <div class="gallery-frame"><img src="assets/images/microsoft365/m365_intune_configuration_policy.png" alt="Microsoft Intune configuration policy"></div>
+      <div class="gallery-frame"><img class="lightbox-trigger" src="assets/images/microsoft365/m365_intune_configuration_policy.png" alt="Microsoft Intune configuration policy" data-full="assets/images/microsoft365/m365_intune_configuration_policy.png"></div>
       <div class="gallery-copy"><strong>Configuration Policy</strong><span>Endpoint settings configured and deployed through Microsoft Intune.</span></div>
     </article>
     <article class="gallery-item">
-      <div class="gallery-frame"><img src="assets/images/microsoft365/m365_intune_compliance_policy.png" alt="Microsoft Intune compliance policy"></div>
+      <div class="gallery-frame"><img class="lightbox-trigger" src="assets/images/microsoft365/m365_intune_compliance_policy.png" alt="Microsoft Intune compliance policy" data-full="assets/images/microsoft365/m365_intune_compliance_policy.png"></div>
       <div class="gallery-copy"><strong>Compliance Policy</strong><span>Device compliance requirements defined, assigned, and evaluated.</span></div>
     </article>
   </div>
@@ -81,11 +185,76 @@
 
 </main>
 
+<div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+  <button class="image-lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+  <button class="image-lightbox-nav image-lightbox-prev" type="button" aria-label="Previous image">&#10094;</button>
+  <figure class="image-lightbox-content">
+    <img id="imageLightboxImage" src="" alt="">
+    <figcaption id="imageLightboxCaption"></figcaption>
+  </figure>
+  <button class="image-lightbox-nav image-lightbox-next" type="button" aria-label="Next image">&#10095;</button>
+</div>
+
 <footer class="footer">
   <span>Jeremy Bernsdorff · Technical Portfolio</span>
   <span>IT operations · administration labs · software development</span>
 </footer>
 <script src="assets/js/site.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+  const lightbox = document.getElementById('imageLightbox');
+  const image = document.getElementById('imageLightboxImage');
+  const caption = document.getElementById('imageLightboxCaption');
+  const closeButton = lightbox.querySelector('.image-lightbox-close');
+  const prevButton = lightbox.querySelector('.image-lightbox-prev');
+  const nextButton = lightbox.querySelector('.image-lightbox-next');
+  let currentIndex = 0;
+
+  const showImage = (index) => {
+    currentIndex = (index + triggers.length) % triggers.length;
+    const trigger = triggers[currentIndex];
+    image.src = trigger.dataset.full || trigger.src;
+    image.alt = trigger.alt || '';
+    caption.textContent = trigger.alt || '';
+  };
+
+  const openLightbox = (index) => {
+    showImage(index);
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    image.src = '';
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach((trigger, index) => {
+    trigger.addEventListener('click', () => openLightbox(index));
+  });
+
+  closeButton.addEventListener('click', closeLightbox);
+  prevButton.addEventListener('click', () => showImage(currentIndex - 1));
+  nextButton.addEventListener('click', () => showImage(currentIndex + 1));
+
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowLeft') showImage(currentIndex - 1);
+    if (event.key === 'ArrowRight') showImage(currentIndex + 1);
+  });
+});
+</script>
 
 </body>
 </html>
