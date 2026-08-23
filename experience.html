@@ -128,6 +128,44 @@
   cursor:pointer;
 }
 
+
+/* Professional experience carousel:
+   separate viewport from slider track so neighboring jobs stay clipped while
+   the track can glide smoothly between full-width slides. */
+.experience-carousel-viewport{
+  width:100%;
+  overflow:hidden;
+  transition:height .28s ease;
+}
+
+.experience-carousel{
+  display:flex !important;
+  align-items:stretch !important;
+  gap:0 !important;
+  width:100% !important;
+  padding:0 !important;
+  overflow:visible !important;
+  scroll-snap-type:none !important;
+  scroll-behavior:auto !important;
+  transform:translate3d(0,0,0);
+  transition:transform .46s cubic-bezier(.22,.61,.36,1);
+  will-change:transform;
+}
+
+.experience-card{
+  flex:0 0 100% !important;
+  width:100% !important;
+  min-width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  box-sizing:border-box;
+}
+
+/* Disable animation briefly while dimensions are recalculated. */
+.experience-carousel.is-measuring{
+  transition:none !important;
+}
+
 </style>
 
 </head>
@@ -170,7 +208,8 @@
       <span class="carousel-status" data-experience-status></span>
     </div>
 
-    <div class="experience-carousel" data-experience-track>
+    <div class="experience-carousel-viewport" data-experience-viewport>
+      <div class="experience-carousel" data-experience-track>
 
       <article class="experience-card">
         <div class="logo-box logo-box-sprite">
@@ -354,6 +393,7 @@
         </div>
       </article>
 
+      </div>
     </div>
 
     <div class="carousel-dots" data-experience-dots aria-label="Experience positions"></div>
@@ -423,7 +463,7 @@
       mobile and client-server applications, and IT/networking/security foundations.
     </p>
   </section>
-</section><section class="cert-panel previous"><span class="cert-label">Previously Held</span><div class="cert-list"><span class="cert-chip">CompTIA Network+</span><span class="cert-chip">CompTIA Security+</span></div></section></div>
+</section>
 </section>
 
 </main>
@@ -439,85 +479,112 @@
   const shell = document.querySelector('[data-experience-carousel]');
   if (!shell) return;
 
+  const viewport = shell.querySelector('[data-experience-viewport]');
   const track = shell.querySelector('[data-experience-track]');
-  const slides = [...track.children];
+  const slides = track ? [...track.querySelectorAll('.experience-card')] : [];
   const prev = shell.querySelector('[data-experience-prev]');
   const next = shell.querySelector('[data-experience-next]');
   const status = shell.querySelector('[data-experience-status]');
   const dotsWrap = shell.querySelector('[data-experience-dots]');
 
-  if (!track || !slides.length) return;
+  if (!viewport || !track || !slides.length) return;
 
-  const dots = slides.map((_, index) => {
+  let index = 0;
+
+  const dots = slides.map((_, dotIndex) => {
     const button = document.createElement('button');
     button.className = 'carousel-dot';
     button.type = 'button';
-    button.setAttribute('aria-label', `Go to experience ${index + 1}`);
-    button.addEventListener('click', () => goTo(index));
+    button.setAttribute('aria-label', `Go to experience ${dotIndex + 1}`);
+    button.addEventListener('click', () => goTo(dotIndex));
     dotsWrap?.appendChild(button);
     return button;
   });
 
-  function currentIndex() {
-    const trackLeft = track.getBoundingClientRect().left;
-    let bestIndex = 0;
-    let bestDistance = Infinity;
+  function updateIndicators() {
+    if (status) status.textContent = `${index + 1} / ${slides.length}`;
 
-    slides.forEach((slide, index) => {
-      const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        bestIndex = index;
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === index;
+      dot.classList.toggle('active', active);
+      if (active) {
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.removeAttribute('aria-current');
       }
     });
-
-    return bestIndex;
   }
 
-  function update() {
-    const index = currentIndex();
-    if (status) status.textContent = `${index + 1} / ${slides.length}`;
-    dots.forEach((dot, dotIndex) => {
-      dot.classList.toggle('active', dotIndex === index);
+  function positionTrack(animate = true) {
+    track.classList.toggle('is-measuring', !animate);
+    track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+
+    if (!animate) {
+      requestAnimationFrame(() => track.classList.remove('is-measuring'));
+    }
+  }
+
+  function equalizeCardHeights() {
+    track.classList.add('is-measuring');
+
+    // Clear prior measurements so responsive reflow can be measured honestly.
+    viewport.style.height = '';
+    slides.forEach(slide => {
+      slide.style.height = '';
+      slide.style.minHeight = '';
     });
-  }
 
-  function goTo(index, behavior = 'smooth') {
-    const normalized = (index + slides.length) % slides.length;
-    track.scrollTo({
-      left: slides[normalized].offsetLeft - track.offsetLeft,
-      behavior
+    // All slides are laid out side-by-side at the same viewport width.
+    const maxHeight = Math.ceil(
+      Math.max(...slides.map(slide => slide.getBoundingClientRect().height))
+    );
+
+    slides.forEach(slide => {
+      slide.style.height = `${maxHeight}px`;
+      slide.style.minHeight = `${maxHeight}px`;
     });
+    viewport.style.height = `${maxHeight}px`;
 
-    // Update promptly for button navigation; scroll handler will refine.
-    window.setTimeout(update, behavior === 'smooth' ? 220 : 0);
+    // Keep the active slide aligned after a resize/re-measure.
+    positionTrack(false);
   }
 
-  function advance(delta) {
-    goTo(currentIndex() + delta);
+  function goTo(newIndex) {
+    index = (newIndex + slides.length) % slides.length;
+    positionTrack(true);
+    updateIndicators();
   }
 
-  prev?.addEventListener('click', () => advance(-1));
-  next?.addEventListener('click', () => advance(1));
+  prev?.addEventListener('click', () => goTo(index - 1));
+  next?.addEventListener('click', () => goTo(index + 1));
 
   shell.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
-      advance(-1);
-    }
-    if (event.key === 'ArrowRight') {
+      goTo(index - 1);
+    } else if (event.key === 'ArrowRight') {
       event.preventDefault();
-      advance(1);
+      goTo(index + 1);
     }
   });
 
-  let raf = null;
-  track.addEventListener('scroll', () => {
-    if (raf) cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(update);
-  }, { passive: true });
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(equalizeCardHeights, 120);
+  });
 
-  update();
+  // Measure once layout/fonts are available, then initialize.
+  const initialize = () => {
+    equalizeCardHeights();
+    updateIndicators();
+  };
+
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(initialize);
+  } else {
+    window.addEventListener('load', initialize, { once:true });
+  }
 })();
 </script>
 
