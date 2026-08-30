@@ -166,6 +166,90 @@
   transition:none !important;
 }
 
+/* Certification evidence links */
+.cert-item{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+.cert-evidence-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 12px;
+  font-size:13px;
+}
+.cert-evidence-links a{
+  color:var(--blue);
+  font-weight:750;
+  text-decoration:none;
+}
+.cert-evidence-links a:hover,
+.cert-evidence-links a:focus-visible{
+  text-decoration:underline;
+}
+.cert-note{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+
+
+/* Certification credentials */
+.cert-list.current-cert-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+
+.cert-credential{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px 18px;
+  background:#fff;
+}
+
+.cert-credential h3{
+  margin:0;
+  font-size:17px;
+  color:var(--blue);
+}
+
+.cert-credential p{
+  margin:6px 0 12px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.cert-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.cert-actions a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+}
+
+.cert-actions a:hover{
+  border-color:var(--blue);
+}
+
+@media(max-width:760px){
+  .cert-list.current-cert-list{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 
 </head>
@@ -441,9 +525,24 @@
   <div class="cert-grid">
     <section class="cert-panel current">
       <span class="cert-label">Current Certifications</span>
-      <div class="cert-list">
-        <span class="cert-chip">CompTIA A+</span>
-        <span class="cert-chip">CompTIA Project+</span>
+      <div class="cert-list current-cert-list">
+        <article class="cert-credential">
+          <h3>CompTIA A+</h3>
+          <p>Certified April 2009 · Lifetime certification</p>
+          <div class="cert-actions">
+            <a href="assets/docs/CompTIA_A%2B_certificate.pdf" target="_blank" rel="noopener noreferrer">View certificate</a>
+            <a href="assets/docs/CompTIA_A%2B_certificate.pdf" download="CompTIA_A+_certificate.pdf">Download PDF</a>
+          </div>
+        </article>
+
+        <article class="cert-credential">
+          <h3>CompTIA Project+</h3>
+          <p>Current certification</p>
+          <div class="cert-actions">
+            <a href="assets/docs/CompTIA_Project%2B_certificate.pdf" target="_blank" rel="noopener noreferrer">View certificate</a>
+            <a href="assets/docs/CompTIA_Project%2B_certificate.pdf" download="CompTIA_Project+_certificate.pdf">Download PDF</a>
+          </div>
+        </article>
       </div>
     </section>
     <section class="cert-panel previous">
